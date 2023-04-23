@@ -1,0 +1,354 @@
+import { GetParamProduct, ProductDto } from './dto/product.dto'
+import { PrismaService } from './../db/prisma.service'
+import { Injectable } from '@nestjs/common'
+
+@Injectable()
+export class ProductService {
+  constructor(private prisma: PrismaService) {}
+
+  //_____________________________________________________________
+  // Получение всех продуктов (товаров)
+  //_____________________________________________________________
+
+  async getAllProduct(body: GetParamProduct) {
+    const getCountProduct = this.prisma.product.findMany({
+      where: {
+        OR: [
+          {
+            category: {
+              parentCategory: {
+                parentCategory: {
+                  parentCategory: {
+                    id: Number(body.id),
+                  },
+                },
+              },
+            },
+          },
+          {
+            category: {
+              parentCategory: {
+                parentCategory: {
+                  id: Number(body.id),
+                },
+              },
+            },
+          },
+          {
+            category: {
+              parentCategory: {
+                id: Number(body.id),
+              },
+            },
+          },
+          {
+            category: {
+              id: Number(body.id),
+            },
+          },
+        ],
+      },
+      take: Number(body.take) * Number(body.skip),
+    })
+
+    return getCountProduct
+  }
+
+  //_________________________________________
+  // Роут фильтрацию из Хедера
+  //_________________________________________
+
+  async sortByPopularity(body: GetParamProduct) {
+    const sortByPopularity = this.prisma.product.findMany({
+      where: {
+        OR: [
+          {
+            category: {
+              parentCategory: {
+                parentCategory: {
+                  parentCategory: {
+                    id: Number(body.id),
+                  },
+                },
+              },
+            },
+          },
+          {
+            category: {
+              parentCategory: {
+                parentCategory: {
+                  id: Number(body.id),
+                },
+              },
+            },
+          },
+          {
+            category: {
+              parentCategory: {
+                id: Number(body.id),
+              },
+            },
+          },
+          {
+            category: {
+              id: Number(body.id),
+            },
+          },
+        ],
+      },
+
+      orderBy: {
+        watchProduct: 'desc',
+      },
+      take: Number(body.take) * Number(body.skip),
+    })
+
+    return sortByPopularity
+  }
+
+  async sortByPriceAsc(body: GetParamProduct) {
+    const sortByPriceAsc = this.prisma.product.findMany({
+      where: {
+        OR: [
+          {
+            category: {
+              parentCategory: {
+                parentCategory: {
+                  parentCategory: {
+                    id: Number(body.id),
+                  },
+                },
+              },
+            },
+          },
+          {
+            category: {
+              parentCategory: {
+                parentCategory: {
+                  id: Number(body.id),
+                },
+              },
+            },
+          },
+          {
+            category: {
+              parentCategory: {
+                id: Number(body.id),
+              },
+            },
+          },
+          {
+            category: {
+              id: Number(body.id),
+            },
+          },
+        ],
+      },
+
+      orderBy: {
+        price: 'asc',
+      },
+      take: Number(body.take) * Number(body.skip),
+    })
+
+    return sortByPriceAsc
+  }
+
+  async sortByPriceDesc(body: GetParamProduct) {
+    const sortByPriceDesc = this.prisma.product.findMany({
+      where: {
+        OR: [
+          {
+            category: {
+              parentCategory: {
+                parentCategory: {
+                  parentCategory: {
+                    id: Number(body.id),
+                  },
+                },
+              },
+            },
+          },
+          {
+            category: {
+              parentCategory: {
+                parentCategory: {
+                  id: Number(body.id),
+                },
+              },
+            },
+          },
+          {
+            category: {
+              parentCategory: {
+                id: Number(body.id),
+              },
+            },
+          },
+          {
+            category: {
+              id: Number(body.id),
+            },
+          },
+        ],
+      },
+
+      orderBy: {
+        price: 'desc',
+      },
+      take: Number(body.take) * Number(body.skip),
+    })
+
+    return sortByPriceDesc
+  }
+
+  async sortByRatingDesc(body: GetParamProduct) {
+    const sortByRatingDesc = this.prisma.product.findMany({
+      where: {
+        OR: [
+          {
+            category: {
+              parentCategory: {
+                parentCategory: {
+                  parentCategory: {
+                    id: Number(body.id),
+                  },
+                },
+              },
+            },
+          },
+          {
+            category: {
+              parentCategory: {
+                parentCategory: {
+                  id: Number(body.id),
+                },
+              },
+            },
+          },
+          {
+            category: {
+              parentCategory: {
+                id: Number(body.id),
+              },
+            },
+          },
+          {
+            category: {
+              id: Number(body.id),
+            },
+          },
+        ],
+      },
+
+      orderBy: {
+        rating: 'desc',
+      },
+      take: Number(body.take) * Number(body.skip),
+    })
+
+    return sortByRatingDesc
+  }
+
+  async sortByRewivesDesc(body: GetParamProduct) {
+    const sortByRewivesDesc = this.prisma.product.findMany({
+      where: {
+        OR: [
+          {
+            category: {
+              parentCategory: {
+                parentCategory: {
+                  parentCategory: {
+                    id: Number(body.id),
+                  },
+                },
+              },
+            },
+          },
+          {
+            category: {
+              parentCategory: {
+                parentCategory: {
+                  id: Number(body.id),
+                },
+              },
+            },
+          },
+          {
+            category: {
+              parentCategory: {
+                id: Number(body.id),
+              },
+            },
+          },
+          {
+            category: {
+              id: Number(body.id),
+            },
+          },
+        ],
+      },
+
+      orderBy: {
+        countReviews: 'desc',
+      },
+
+      take: Number(body.take) * Number(body.skip),
+    })
+
+    return sortByRewivesDesc
+  }
+
+  //_____________________________________________________________
+  // Для вывода товаров определенной группы  в Каталоге товаров
+  //_____________________________________________________________
+
+  async mainCategoryProduct(body: GetParamProduct) {
+    const getMainCategoryProduct = this.prisma.product.findMany({
+      where: {
+        OR: [
+          {
+            category: {
+              parentCategory: {
+                id: Number(body.id),
+              },
+            },
+          },
+          {
+            category: {
+              id: Number(body.id),
+            },
+          },
+          {
+            category: {
+              parentCategory: {
+                parentCategory: {
+                  parentCategory: {
+                    id: Number(body.id),
+                  },
+                },
+              },
+            },
+          },
+        ],
+      },
+      take: Number(body.take),
+    })
+
+    return getMainCategoryProduct
+  }
+
+  //_____________________________________________________________
+  // Получение одного товара
+  //_____________________________________________________________
+
+  async oneProduct(body: GetParamProduct) {
+    const oneProduct = this.prisma.product.findMany({
+      where: {
+        id: Number(body.id),
+      },
+    })
+
+    return oneProduct
+  }
+}
