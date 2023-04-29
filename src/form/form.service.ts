@@ -3,7 +3,7 @@ import { DtoDataForm } from './dto/create-form.dto'
 
 @Injectable()
 export class FormService {
-  create(FormOrder: DtoDataForm) {
+  fastOrder(FormOrder: DtoDataForm) {
     if (!FormOrder) return 'В форме ошибка'
     return true
   }

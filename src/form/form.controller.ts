@@ -8,10 +8,17 @@ export class FormController {
 
   @Post('/order')
   @HttpCode(200)
-  create(@Body() FormOrder: DtoDataForm) {
+  fastOrder(@Body() FormOrder: DtoDataForm) {
     console.log(FormOrder)
-    return this.formService.create(FormOrder)
+    return this.formService.fastOrder(FormOrder)
   }
+
+  // @Post('/orderSpecialist')
+  // @HttpCode(200)
+  // specialistOrder(@Body() FormOrder: DtoDataForm) {
+  //   console.log(FormOrder)
+  //   return this.formService.create(FormOrder)
+  // }
 
   @Get()
   @HttpCode(200)
