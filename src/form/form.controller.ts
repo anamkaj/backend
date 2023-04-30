@@ -8,7 +8,7 @@ export class FormController {
 
   @Post('/order')
   @HttpCode(200)
-  fastOrder(@Body() FormOrder: DtoDataForm) {
+  async fastOrder(@Body() FormOrder: DtoDataForm) {
     console.log(FormOrder)
     return this.formService.fastOrder(FormOrder)
   }

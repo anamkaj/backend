@@ -11,7 +11,7 @@ export class ProductService {
   //_____________________________________________________________
 
   async getAllProduct(body: GetParamProduct) {
-    const getCountProduct = this.prisma.product.findMany({
+    const getAllProduct = this.prisma.product.findMany({
       where: {
         OR: [
           {
@@ -51,7 +51,7 @@ export class ProductService {
       take: Number(body.take) * Number(body.skip),
     })
 
-    return getCountProduct
+    return getAllProduct
   }
 
   //_________________________________________
