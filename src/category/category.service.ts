@@ -1,7 +1,6 @@
 import { PrismaService } from './../db/prisma.service'
 import { Injectable } from '@nestjs/common'
 import { Category, GetParamCategory, ICategory, IChildrenCategory } from './dto/category.dto'
-import { addStore, checkDouble, filterCat, flatArrayCategory } from './helper/filter.cat'
 import { categoryFlatArray } from './helper/category.filter'
 
 @Injectable()
@@ -40,6 +39,6 @@ export class CategoryService {
     // if (filterCat(body.id)) {
     //   return flatArrayCategory
     // }
-    return categoryFlatArray(category)
+    return categoryFlatArray(category, body.id)
   }
 }

@@ -16,7 +16,7 @@ export class CategoryController {
   @Get('/all-category')
   @HttpCode(200)
   async allCategory(@Query() body: GetParamCategory) {
-    console.log(body)
+    console.log(body, 'категории')
     return this.categoryService.allCategory(body)
   }
 }

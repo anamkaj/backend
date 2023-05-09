@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { DtoDataReviews, GetReviewDto } from './dto/create-review.dto'
+import { DtoDataLike, DtoDataReviews, GetReviewDto, LikeDto } from './dto/create-review.dto'
 import { PrismaService } from 'src/db/prisma.service'
 
 @Injectable()
@@ -28,6 +28,40 @@ export class ReviewsService {
       },
     })
     return createReviews.then(() => {
+      return true
+    })
+  }
+  // Добавление  лайков
+  async incrementsLike(body: DtoDataLike) {
+    const { data } = body
+    const likeIncrements = this.prisma.reviews.update({
+      where: {
+        id: data.commentId,
+      },
+      data: {
+        like: {
+          increment: 1,
+        },
+      },
+    })
+    return likeIncrements.then(() => {
+      return true
+    })
+  }
+  // Добавление  дизлайков
+  async decrementsLike(body: DtoDataLike) {
+    const { data } = body
+    const decrementsLike = this.prisma.reviews.update({
+      where: {
+        id: data.commentId,
+      },
+      data: {
+        dislike: {
+          increment: 1,
+        },
+      },
+    })
+    return decrementsLike.then(() => {
       return true
     })
   }

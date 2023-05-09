@@ -1,6 +1,6 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, HttpCode, Query } from '@nestjs/common'
+import { Controller, Get, Post, Body, HttpCode, Query } from '@nestjs/common'
 import { ReviewsService } from './reviews.service'
-import { DtoDataReviews, GetReviewDto } from './dto/create-review.dto'
+import { DtoDataLike, DtoDataReviews, GetReviewDto, LikeDto } from './dto/create-review.dto'
 
 @Controller()
 export class ReviewsController {
@@ -16,5 +16,17 @@ export class ReviewsController {
   @HttpCode(200)
   async createReviews(@Body() body: DtoDataReviews) {
     return this.reviewsService.createReviews(body)
+  }
+  @Post('/likeInc')
+  @HttpCode(200)
+  async incrementsLike(@Body() body: DtoDataLike) {
+    
+    return this.reviewsService.incrementsLike(body)
+  }
+
+  @Post('/likeDec')
+  @HttpCode(200)
+  async decrementsLike(@Body() body: DtoDataLike) {
+    return this.reviewsService.decrementsLike(body)
   }
 }

@@ -1,7 +1,10 @@
 import { Category, ICategory, IChildrenCategory } from '../dto/category.dto'
 
-export const categoryFlatArray = (data: ICategory[]) => {
+// Функция создания плоского массива всех групп
+
+export const categoryFlatArray = (data: ICategory[], id: number) => {
   const flatCategory: Category[] = []
+  const finaleCategory: Category[] = []
 
   const addCategoryArray = (category: IChildrenCategory[]) => {
     category.map(r => {
@@ -48,10 +51,53 @@ export const categoryFlatArray = (data: ICategory[]) => {
       }
     }
   }
-  parentCategory()
 
-  return flatCategory
+  //Функция возврата только групп родительской группы
+
+  const findCategory = () => {
+    parentCategory()
+
+    const checkCategoryFromArray = (checkId: number) => {
+      return finaleCategory.find(e => e.id == checkId)
+    }
+    // Получение групп всех Дочерних групп (снизу --вверх  )
+    const searchParen = (parentIdTwo: number) => {
+      for (let i = 0; flatCategory.length > i; i++) {
+        if (parentIdTwo == flatCategory[i].id) {
+          if (checkCategoryFromArray(flatCategory[i].id) == undefined) {
+            finaleCategory.push(flatCategory[i])
+          }
+        }
+      }
+    }
+    // Получение групп всех Дочерних групп (сверху -  вниз )
+    const childId = (parentId: number) => {
+      for (let i = 0; flatCategory.length > i; i++) {
+        if (parentId == flatCategory[i].parentCategoryId) {
+          if (checkCategoryFromArray(flatCategory[i].id) == undefined) {
+            finaleCategory.push(flatCategory[i])
+            childId(flatCategory[i].id)
+          }
+        } else {
+          for (let i = 0; finaleCategory.length > i; i++) {
+            searchParen(finaleCategory[i].parentCategoryId)
+          }
+        }
+      }
+    }
+    // Поиск группы из запроса с фронта
+    const parentId = () => {
+      flatCategory.map(x => {
+        if (x.id == id) {
+          finaleCategory.push(x)
+          childId(x.id)
+        }
+      })
+    }
+    parentId()
+  }
+
+  findCategory()
+
+  return finaleCategory
 }
-
-
-

@@ -16,3 +16,14 @@ export class DtoDataReviews {
   @IsNotEmpty()
   data: CreateReviewDto
 }
+
+export class LikeDto {
+  commentId: number
+}
+
+export class DtoDataLike {
+  @Type(() => LikeDto)
+  @ValidateNested()
+  @IsNotEmpty()
+  data: LikeDto
+}
