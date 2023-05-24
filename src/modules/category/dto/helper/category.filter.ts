@@ -1,4 +1,4 @@
-import { Category, ICategory, IChildrenCategory } from '../dto/category.dto'
+import { Category, ICategory, IChildrenCategory } from '../category.dto'
 
 // Функция создания плоского массива всех групп
 

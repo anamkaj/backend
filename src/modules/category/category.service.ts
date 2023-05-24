@@ -1,7 +1,7 @@
-import { PrismaService } from './../db/prisma.service'
 import { Injectable } from '@nestjs/common'
 import { Category, GetParamCategory, ICategory, IChildrenCategory } from './dto/category.dto'
-import { categoryFlatArray } from './helper/category.filter'
+import { PrismaService } from 'src/db/prisma.service'
+import { categoryFlatArray } from './dto/helper/category.filter'
 
 @Injectable()
 export class CategoryService {
