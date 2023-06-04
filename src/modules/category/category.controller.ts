@@ -6,11 +6,6 @@ import { GetParamCategory } from './dto/category.dto'
 export class CategoryController {
   constructor(private readonly categoryService: CategoryService) {}
 
-  @Get('/oneCategory/:id')
-  @HttpCode(200)
-  async findOne(@Param() id: string) {
-    return this.categoryService.findOne(Number(id))
-  }
   // Принимаем id категории с фронта и получаем все категории для страницы категории
 
   @Get('/all-category')
@@ -18,5 +13,11 @@ export class CategoryController {
   async allCategory(@Query() body: GetParamCategory) {
     console.log(body, 'категории')
     return this.categoryService.allCategory(body)
+  }
+
+  @Get('/null-category')
+  @HttpCode(200)
+  async nullCategory() {
+    return this.categoryService.nullCategory()
   }
 }

@@ -6,13 +6,7 @@ import { categoryFlatArray } from './dto/helper/category.filter'
 @Injectable()
 export class CategoryService {
   constructor(private prisma: PrismaService) {}
-  async findOne(id: number) {
-    return this.prisma.category.findUnique({
-      where: {
-        id: 4,
-      },
-    })
-  }
+
   // Получение всех категорий и подкатегорий
 
   async allCategory(body: GetParamCategory) {
@@ -40,5 +34,21 @@ export class CategoryService {
     //   return flatArrayCategory
     // }
     return categoryFlatArray(category, body.id)
+  }
+
+  async nullCategory() {
+    return this.prisma.category.findMany({
+      include: {
+        childrenCategories: {
+          include: {
+            childrenCategories: {
+              include: {
+                childrenCategories: true,
+              },
+            },
+          },
+        },
+      },
+    })
   }
 }

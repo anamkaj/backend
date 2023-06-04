@@ -65,4 +65,14 @@ export class ReviewsService {
       return true
     })
   }
+
+  async getAllReviews() {
+    const getAllReviews = this.prisma.reviews.findMany({
+      orderBy: {
+        like: 'desc',
+      },
+      take: 20,
+    })
+    return getAllReviews
+  }
 }

@@ -20,7 +20,6 @@ export class ReviewsController {
   @Post('/likeInc')
   @HttpCode(200)
   async incrementsLike(@Body() body: DtoDataLike) {
-    
     return this.reviewsService.incrementsLike(body)
   }
 
@@ -28,5 +27,10 @@ export class ReviewsController {
   @HttpCode(200)
   async decrementsLike(@Body() body: DtoDataLike) {
     return this.reviewsService.decrementsLike(body)
+  }
+  @Get('/reviewsAll')
+  @HttpCode(200)
+  async getAllReviews() {
+    return this.reviewsService.getAllReviews()
   }
 }

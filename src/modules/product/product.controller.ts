@@ -64,4 +64,11 @@ export class ProductController {
     console.log(body)
     return this.productService.oneProduct(body)
   }
+
+  @Get('/popularProduct')
+  @HttpCode(200)
+  async popularProduct() {
+    console.log("request")
+    return this.productService.popularProduct()
+  }
 }

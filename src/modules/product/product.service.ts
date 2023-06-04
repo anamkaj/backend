@@ -352,4 +352,15 @@ export class ProductService {
 
     return oneProduct
   }
+
+  async popularProduct() {
+    const popularProduct = this.prisma.product.findMany({
+      orderBy: {
+        watchProduct: 'desc',
+      },
+      take: 12,
+    })
+
+    return popularProduct
+  }
 }
