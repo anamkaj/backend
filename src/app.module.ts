@@ -5,10 +5,18 @@ import { CategoryModule } from './modules/category/category.module'
 import { ReviewsModule } from './modules/reviews/reviews.module'
 import { ProductModule } from './modules/product/product.module'
 import { CountsModule } from './modules/count/counts.module'
-import { PostModule } from './modules/post/post.module';
+import { PostModule } from './modules/post/post.module'
 
 @Module({
-  imports: [ProductModule, CategoryModule, FormModule, ReviewsModule, CountsModule, SearchModule, PostModule],
+  imports: [
+    ProductModule,
+    CategoryModule,
+    FormModule,
+    ReviewsModule,
+    CountsModule,
+    SearchModule,
+    PostModule,
+  ],
   controllers: [],
 })
 export class AppModule {}
