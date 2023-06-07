@@ -15,6 +15,7 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', 'public', 'img'), {
     prefix: '/img',
   })
+  console.log("wefwefwef")
   await app.listen(4000)
   console.log(join(__dirname, '..', 'public', 'static', 'img'))
 }

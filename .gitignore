@@ -37,5 +37,3 @@ lerna-debug.log*
 .env
 .eslintrc.js
 .prettierrc
-tsconfig.json
-tsconfig.build.json
