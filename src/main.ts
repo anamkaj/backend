@@ -16,7 +16,7 @@ async function bootstrap() {
     prefix: '/img',
   })
 
-  await app.listen(80)
+  await app.listen(8080)
   console.log(join(__dirname, '..', 'public', 'static', 'img'))
 }
 bootstrap()
