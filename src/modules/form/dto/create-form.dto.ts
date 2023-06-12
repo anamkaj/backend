@@ -13,6 +13,7 @@ class CreateFormDto {
   email: string
   // @IsInt({ message: 'id - должен быть типом Int' })
   id: number
+  data?: JSON
 }
 
 export class DtoDataForm {

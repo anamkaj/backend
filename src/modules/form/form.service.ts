@@ -5,10 +5,11 @@ import { DtoDataForm } from './dto/create-form.dto'
 export class FormService {
   async fastOrder(FormOrder: DtoDataForm) {
     if (!FormOrder) return 'В форме ошибка'
-    return true
+    return 'форма получена'
   }
 
-  findAll() {
-    return `This action returns all form`
+  async orderFormCartPage(FormOrder: DtoDataForm) {
+    if (!FormOrder) return 'В форме ошибка'
+    return 'форма со страницы корзины'
   }
 }
