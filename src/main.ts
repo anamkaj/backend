@@ -6,7 +6,13 @@ import { ValidationPipe } from '@nestjs/common'
 import { config } from 'dotenv'
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule)
+  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
+    httpsOptions: {
+      key: '/etc/ssl/tmk-v.ru.crt',
+      ca: 'ca',
+      cert: 'cert',
+    },
+  })
   app.enableCors()
   app.setGlobalPrefix('api')
   app.useGlobalPipes(new ValidationPipe())
@@ -15,9 +21,7 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', 'public', 'img'), {
     prefix: '/img',
   })
-  console.log("hell")
 
-  await app.listen(8080)
-  console.log(join(__dirname, '..', 'public', 'static', 'img'))
+  await app.listen(4000)
 }
 bootstrap()
