@@ -7,7 +7,15 @@ import { config } from 'dotenv'
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule)
-  app.enableCors()
+  const options = {
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+    credentials: true,
+  }
+
+  app.enableCors(options)
   app.setGlobalPrefix('api')
   app.useGlobalPipes(new ValidationPipe())
   config()
