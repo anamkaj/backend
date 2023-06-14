@@ -6,13 +6,7 @@ import { ValidationPipe } from '@nestjs/common'
 import { config } from 'dotenv'
 
 async function bootstrap() {
-  const app = await NestFactory.create<NestExpressApplication>(AppModule, {
-    httpsOptions: {
-      key: '/etc/ssl/tmk-v.ru.crt',
-      ca: 'ca',
-      cert: 'cert',
-    },
-  })
+  const app = await NestFactory.create<NestExpressApplication>(AppModule)
   app.enableCors()
   app.setGlobalPrefix('api')
   app.useGlobalPipes(new ValidationPipe())
