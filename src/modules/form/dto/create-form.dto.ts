@@ -1,6 +1,13 @@
 import { Type } from 'class-transformer'
 import { IsInt, IsNotEmpty, ValidateNested } from 'class-validator'
 
+class DataCart {
+  title: string
+  price: number
+  count: number
+  sale: number
+}
+
 class CreateFormDto {
   // @IsInt({ message: 'article - должен быть типом Int' })
   article: number
@@ -13,7 +20,7 @@ class CreateFormDto {
   email: string
   // @IsInt({ message: 'id - должен быть типом Int' })
   id: number
-  data?: JSON
+  data?: DataCart[]
 }
 
 export class DtoDataForm {

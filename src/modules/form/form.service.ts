@@ -17,26 +17,25 @@ export class FormService {
 
   public example(FormOrder: DtoDataForm): void {
     const { data } = FormOrder
-    const json = data.data.parse
+    const cart = data.data.map((x, index) => [
+      `${x.title}`,
+      `Количество: ${x.count} шт. `,
+      `Размер скидки: ${x.sale}%. `,
+      `Стоимость за одну штуку: ${x.price} (без скидка)`,
+      `<br>`,
+    ])
 
     this.mailerService
       .sendMail({
         to: 'tmk-v.ru@yandex.ru', // list of receivers
         from: 'tmk-v.ru@yandex.ru', // sender address
-        subject: 'Заявка с крутого интернет-магазина ✔', // Subject line
+        subject: 'Корзина Покупки ✔', // Subject line
         text: 'welcome', // plaintext body
         html: `<div> 
-        <h1> Имя: ${data.name}
-        </h1>
-        </br>
-        <h2>Телефон: ${data.phone}</h2>
-        <h2>Почта: ${data.email}</h2>
-        <h2>Артикул товара (можно найти через поиск на сайте): ${data.article}</h2>
-        <h2>ID: ${data.id}</h2>
-        <h2>Цена: ${data.price}</h2>
-        <h2>Название товара: ${data.title}</h2>
-        <h2>Название товара: ${json}</h2>
-        
+        <h1 style="color: black; font-size: 14px"> Имя: ${data.name}</h1>
+        <h2 style="color: black; font-size: 14px">Телефон: ${data.phone}</h2>
+        <h2 style="color: black; font-size: 14px">Почта: ${data.email}</h2>
+        <h2 style="color: black; font-size: 14px; font-family: monospace; font-weight: lighter;">Корзина: ${'<br>'} ${cart}</h2>
         </div>`, // HTML body content
       })
       .then(success => {
