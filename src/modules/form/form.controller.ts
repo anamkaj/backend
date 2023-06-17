@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, HttpCode, UsePipes, ValidationPipe } from 
 import { FormService } from './form.service'
 import { DtoDataForm } from './dto/create-form.dto'
 
+
 @Controller('form')
 export class FormController {
   constructor(private readonly formService: FormService) {}
@@ -13,20 +14,17 @@ export class FormController {
     return this.formService.fastOrder(FormOrder)
   }
 
-
   @Post('/order/cart')
   @HttpCode(200)
   async orderFormCartPage(@Body() FormOrder: DtoDataForm) {
     console.log(FormOrder)
     return this.formService.orderFormCartPage(FormOrder)
   }
-
-  // @Post('/orderSpecialist')
-  // @HttpCode(200)
-  // specialistOrder(@Body() FormOrder: DtoDataForm) {
-  //
-  //   return this.formService.create(FormOrder)
-  // }
-
-  
 }
+
+// @Post('/orderSpecialist')
+// @HttpCode(200)
+// specialistOrder(@Body() FormOrder: DtoDataForm) {
+//
+//   return this.formService.create(FormOrder)
+// }
