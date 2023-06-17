@@ -17,6 +17,8 @@ export class FormService {
 
   public example(FormOrder: DtoDataForm): void {
     const { data } = FormOrder
+    const json = data.data.parse
+
     this.mailerService
       .sendMail({
         to: 'tmk-v.ru@yandex.ru', // list of receivers
@@ -33,7 +35,8 @@ export class FormService {
         <h2>ID: ${data.id}</h2>
         <h2>Цена: ${data.price}</h2>
         <h2>Название товара: ${data.title}</h2>
-        <h2>Название товара: ${data.data.parse}</h2>
+        <h2>Название товара: ${json}</h2>
+        
         </div>`, // HTML body content
       })
       .then(success => {
