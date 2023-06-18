@@ -10,7 +10,6 @@ async function bootstrap() {
   app.setGlobalPrefix('api')
   app.useGlobalPipes(new ValidationPipe())
   config()
-  app.enableCors({ credentials: true, origin: 'https://tmk-v.ru' })
 
   app.useStaticAssets(join(__dirname, '..', 'public', 'img'), {
     prefix: '/img',
