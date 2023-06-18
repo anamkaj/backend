@@ -7,11 +7,13 @@ export class FormService {
   constructor(private readonly mailerService: MailerService) {}
   async fastOrder(FormOrder: DtoDataForm) {
     if (!FormOrder) return 'В форме ошибка'
+    console.log(FormOrder)
     return this.example(FormOrder)
   }
 
   async orderFormCartPage(FormOrder: DtoDataForm) {
     if (!FormOrder) return 'В форме ошибка'
+    console.log(FormOrder)
     return 'форма со страницы корзины'
   }
 
@@ -24,6 +26,7 @@ export class FormService {
       `Стоимость за одну штуку: ${x.price} (без скидка)`,
       `<br>`,
     ])
+    console.log(cart)
 
     this.mailerService
       .sendMail({

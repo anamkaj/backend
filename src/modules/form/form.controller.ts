@@ -10,14 +10,14 @@ export class FormController {
   @Post('/order')
   @HttpCode(200)
   async fastOrder(@Body() FormOrder: DtoDataForm) {
-    console.log(FormOrder)
+   
     return this.formService.fastOrder(FormOrder)
   }
 
   @Post('/order/cart')
   @HttpCode(200)
   async orderFormCartPage(@Body() FormOrder: DtoDataForm) {
-    console.log(FormOrder)
+  
     return this.formService.orderFormCartPage(FormOrder)
   }
 }
