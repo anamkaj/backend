@@ -9,11 +9,8 @@ async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule)
   app.setGlobalPrefix('api')
   app.useGlobalPipes(new ValidationPipe())
-  app.enableCors({
-    allowedHeaders: '*',
-    origin: '*',
-  })
   config()
+  app.enableCors({ credentials: true, origin: 'http://localhost:3005' })
 
   app.useStaticAssets(join(__dirname, '..', 'public', 'img'), {
     prefix: '/img',
