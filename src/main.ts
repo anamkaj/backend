@@ -10,8 +10,12 @@ async function bootstrap() {
   app.setGlobalPrefix('api')
   app.useGlobalPipes(new ValidationPipe())
   app.enableCors({
-    origin: true,
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    origin: [
+      'http://localhost:3005',
+      'https://tmk-v.ru',
+      'https://www.tmk-v.ru/',
+    ],
+    methods: ["GET", "POST"],
     credentials: true,
   })
   config()
