@@ -10,9 +10,13 @@ import { MailerModule } from '@nestjs-modules/mailer'
         host: 'smtp.yandex.ru',
         port: 465,
         secure: true, // upgrade later with STARTTLS
+        logger: true,
         auth: {
           user: process.env.NAME_MAIL,
           pass: process.env.PASS_MAIL,
+        },
+        tls: {
+          rejectUnauthorized: false,
         },
       },
     }),
