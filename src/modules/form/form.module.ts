@@ -12,8 +12,8 @@ import { MailerModule } from '@nestjs-modules/mailer'
         secure: true, // upgrade later with STARTTLS
         logger: true,
         auth: {
-          user: process.env.NAME_MAIL,
-          pass: process.env.PASS_MAIL,
+          user: 'tmk-v.ru@yandex.ru',
+          pass: '1T63FVcHz0Uy',
         },
       },
     }),
