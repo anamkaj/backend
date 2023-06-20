@@ -33,8 +33,8 @@ export class FormService {
 
     this.mailerService
       .sendMail({
-        to: 'order@tmk-v.ru', // list of receivers
-        from: 'order@tmk-v.ru', // sender address
+        to: 'tmk-v.ru@yandex.ru', // list of receivers
+        from: 'tmk-v.ru@yandex.ru', // sender address
         subject: 'Корзина Покупки ✔', // Subject line
         text: 'welcome', // plaintext body
         html: `<div> 
@@ -58,8 +58,8 @@ export class FormService {
 
     this.mailerService
       .sendMail({
-        to: 'order@tmk-v.ru', // list of receivers
-        from: 'order@tmk-v.ru', // sender address
+        to: 'tmk-v.ru@yandex.ru', // list of receivers
+        from: 'tmk-v.ru@yandex.ru', // sender address
         subject: 'Запрос консультации✔', // Subject line
         text: 'welcome', // plaintext body
         html: `<div> 
@@ -83,8 +83,8 @@ export class FormService {
 
     this.mailerService
       .sendMail({
-        to: 'order@tmk-v.ru', // list of receivers
-        from: 'order@tmk-v.ru',
+        to: 'tmk-v.ru@yandex.ru', // list of receivers
+        from: 'tmk-v.ru@yandex.ru',
         subject: 'Заказ одного товара ✔', // Subject line
         text: 'welcome', // plaintext body
         html: `<div> 
