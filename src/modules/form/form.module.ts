@@ -7,7 +7,7 @@ import { MailerModule } from '@nestjs-modules/mailer'
   imports: [
     MailerModule.forRoot({
       transport: {
-        host: 'smtp-pulse.com',
+        host: 'connect.smtp.bz',
         port: 465,
         secure: true, // upgrade later with STARTTLS
         logger: true,
