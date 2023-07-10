@@ -18,7 +18,7 @@ export class FormService {
   async oneProduct(FormOrder: DtoDataForm) {
     if (!FormOrder) return 'В форме ошибка'
     console.log(FormOrder)
-    return this.sendCartPage(FormOrder)
+    return this.sendFormOneProduct(FormOrder)
   }
 
   public sendCartPage(FormOrder: DtoDataForm): void {
@@ -91,6 +91,9 @@ export class FormService {
         <h1 style="color: black; font-size: 14px"> Имя: ${data.name}</h1>
         <h2 style="color: black; font-size: 14px">Телефон: ${data.phone}</h2>
         <h2 style="color: black; font-size: 14px">Почта: ${data.email}</h2>
+        <h2 style="color: black; font-size: 14px">Артикул: ${data.article}</h2>
+        <h2 style="color: black; font-size: 14px">Название товара: ${data.title}</h2>
+        <h2 style="color: black; font-size: 14px">Стоимость: ${data.price}</h2>
         
         </div>`, // HTML body content
       })
